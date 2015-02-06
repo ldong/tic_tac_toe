@@ -46,7 +46,9 @@
             if(count == arr.length){
                 alert("Game over");
                 console.log("Game over");
-                location.reload();
+                setTimeout(function(){
+                    location.reload();
+                }, 1000);
             }
 
             if( (arr[0] == arr[1] && arr[1]== arr[2] )
@@ -66,7 +68,7 @@
                 (arr[2] == arr[4] && arr[4] == arr[6])){
                 alert('Player'+currPlayer+' Won');
                 console.log('Player'+currPlayer+' Won');
-                setTimeout(function(){ 
+                setTimeout(function(){
                     location.reload();
                 }, 1000);
             }
