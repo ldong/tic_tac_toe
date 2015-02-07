@@ -1,0 +1,19 @@
+{
+  "name": "Tic Tac Toe",
+  "version": "0.1",
+  "manifest_version": 2,
+  "description": "Play tic tac toe",
+  "icons": {
+	    "16": "images/16.png",
+		"48": "images/48.png",
+		"128": "images/128.png"
+  },
+  "permissions": [
+  ],
+
+  "app" :{
+    "launch": {
+        "web_url": "http://ldong.org/tic_tac_toe/"
+    }
+  }
+}
