@@ -1,47 +1,38 @@
 (function(){
     console.log('Hi');
     $(document).ready(function(){
-        var items = [];
-        var arr = [];
-        for(var i=0; i<9; ++i){
-            items.push('<li class="tile noPlayer"'+ 'data-idx="'+i+'"><p></p></li>');
-            arr.push(i+10);
+        var items = [],
+            arr = [],
+            currPlayer = 1,
+            count = 0,
+            $list = $('<ul></ul>');
+
+        function addClickAction($p, $this){
+            $this.click(function() {
+                if($this.hasClass('noPlayer')){
+                    var val;
+                    var nextPlayer;
+                    var idx= $this.data()['idx'];
+                    if (currPlayer == 1) {
+                        val = 'O';
+                        nextPlayer = 2;
+                        $this.addClass('player1');
+                    } else {
+                        val = 'X';
+                        nextPlayer = 1;
+                        $this.addClass('player2');
+                    }
+                    arr[idx] = val;
+                    console.log('arr[idx]: '+ idx + ', val: '+val);
+                    $p.text(val);
+                    $this.removeClass('noPlayer');
+                    count++;
+                    checkIfWin(arr, count);
+                    currPlayer = nextPlayer;
+                }
+            });
         }
 
-        var $list = $('<ul></ul>')
-        $list.append(items.join(''));
-        $('.board').append($list);
-
-        var currPlayer = 1;
-        var count = 0;
-        $(".board li").each(function(n) {
-            $this = $(this);
-            $p = $this.find('p');
-            (function($p, $this){
-                $this.click(function() {
-                    if($this.hasClass('noPlayer')){
-                        var val;
-                        var nextPlayer;
-                        var idx= $this.data()['idx'];
-                        if (currPlayer == 1) {
-                            val = 'O';
-                            nextPlayer = 2;
-                            $this.addClass('player1');
-                        } else {
-                            val = 'X';
-                            nextPlayer = 1;
-                            $this.addClass('player2');
-                        }
-                        arr[idx] = val;
-                        $p.text(val);
-                        $this.removeClass('noPlayer');
-                        count++;
-                        checkIfWin(arr, count);
-                        currPlayer = nextPlayer;
-                    }
-                });
-            })($p, $this);
-        });
         function checkIfWin(arr, count){
             if(count == arr.length){
                 alert("Game over");
@@ -73,5 +64,22 @@
                 }, 1000);
             }
         }
+
+        // logics start
+        for(var i=0; i<9; ++i){
+            items.push('<li class="tile noPlayer"'+ 'data-idx="'+i+'"><p></p></li>');
+            arr.push(i+10);
+        }
+
+        $list.append(items.join(''));
+        $('.board').append($list);
+
+        $(".board li").each(function(n) {
+            $this = $(this);
+            $p = $this.find('p');
+            addClickAction($p, $this);
+        });
+
+
     });
 })();
