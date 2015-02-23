@@ -7,6 +7,8 @@ Date: Fri Feb  6 13:24:19 PST 2015
 
 # Introduction
 
+![demo](./demo.png)
+
 [Click to play](http://ldong.github.io/tic_tac_toe/)
 
 # TODO
